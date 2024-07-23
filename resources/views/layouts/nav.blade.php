@@ -59,6 +59,15 @@
                   Data Ekskul
                 </a>
               </li>
+
+              <li>
+                <a
+                  class="text-gray-100 transition hover:text-gray-300/75 dark:text-white dark:hover:text-white/75"
+                  href=""
+                >
+                  Data Mapel
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
