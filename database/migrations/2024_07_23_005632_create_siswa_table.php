@@ -9,24 +9,27 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('guru', function (Blueprint $table) {
+        Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->string('nuptk')->unique();
+            $table->string('nis')->unique();
             $table->string('nama');
-            $table->string('agama');
             $table->string('jenis_kelamin');
+            $table->string('agama');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->unsignedBigInteger('id_kelas');
             $table->unsignedBigInteger('id_jurusan');
-            $table->unsignedBigInteger('id_mapel');
+            $table->unsignedBigInteger('id_organisasi')->nullable();
+            $table->unsignedBigInteger('id_ekskul')->nullable();
+            $table->text('alamat');
             $table->timestamps();
 
             $table->foreign('id_kelas')->references('id_kelas')->on('tb_kelas')->onDelete('restrict');
             $table->foreign('id_jurusan')->references('id_jurusan')->on('tb_jurusan')->onDelete('restrict');
-            $table->foreign('id_mapel')->references('id_mapel')->on('tb_mapel')->onDelete('restrict');
+            $table->foreign('id_organisasi')->references('id_organisasi')->on('tb_organisasi')->onDelete('restrict');
+            $table->foreign('id_ekskul')->references('id_ekskul')->on('tb_ekskul')->onDelete('restrict');
         });
     }
 
@@ -35,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('guru');
+        Schema::dropIfExists('siswa');
     }
 };
