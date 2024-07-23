@@ -21,12 +21,12 @@
         </div>
         <ul class="flex gap-8 list-none">
             <li><a href="{{route('dashboard.index')}}" class="text-blue-600">Beranda</a></li>
-            <li><a href="./buku.php" class="text-blue-600">Data Siswa</a></li>
-            <li><a href="./anggota.php" class="text-blue-600">Data Kelas</a></li>
-            <li><a href="./pages/kategori.php" class="text-blue-600">Data Jurusan</a></li>
-            <li><a href="./pages/genre.php" class="text-blue-600">Data Organisasi</a></li>
-            <li><a href="./peminjaman.php" class="text-blue-600">Data Ekstrakurikuler</a></li>
-            <li><a href="./history_peminjaman.php" class="text-blue-600">Data Mapel</a></li>
+            <li><a href="{{route('siswa.index')}}" class="text-blue-600">Data Siswa</a></li>
+            <li><a href="{{route('kelas.index')}}" class="text-blue-600">Data Kelas</a></li>
+            <li><a href="{{route('jurusan.index')}}" class="text-blue-600">Data Jurusan</a></li>
+            <li><a href="{{route('organisasi.index')}}" class="text-blue-600">Data Organisasi</a></li>
+            <li><a href="{{route('ekskul.index')}}" class="text-blue-600">Data Ekstrakurikuler</a></li>
+            <li><a href="{{route('mapel.index')}}" class="text-blue-600">Data Mapel</a></li>
         </ul>
         <div class="flex items-center gap-4">
             <div class="sm:flex sm:gap-4">
