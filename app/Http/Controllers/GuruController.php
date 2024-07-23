@@ -16,7 +16,7 @@ class GuruController extends Controller
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
-        return view('guru.index', compact('guru', 'kelas', 'jurusan'));
+        return view('guru.index', compact('guru', 'mapel', 'kelas', 'jurusan'));
     }
 
     public function create()
@@ -77,7 +77,7 @@ class GuruController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nuptk' => ['required', 'unique:siswa,nuptk,' . $id, 'regex:/^[a-zA-Z0-9]+$/'],
+            'nuptk' => ['required', 'unique:guru,nuptk,' . $id, 'regex:/^[a-zA-Z0-9]+$/'],
         'nama' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'agama' => 'required|string|max:255',
@@ -87,9 +87,9 @@ class GuruController extends Controller
             'id_jurusan' => 'required|exists:tb_jurusan,id_jurusan',
             'id_mapel' => 'required|exists:tb_mapel,id_mapel',
         ], [
-            'nis.required' => 'NIS wajib diisi.',
-            'nis.unique' => 'NIS sudah terdaftar.',
-            'nis.regex' => 'NIS hanya boleh berisi huruf dan angka.',
+            'nuptk.required' => 'nuptk wajib diisi.',
+            'nuptk.unique' => 'nuptk sudah terdaftar.',
+            'nuptk.regex' => 'nuptk hanya boleh berisi huruf dan angka.',
             'nama.required' => 'Nama wajib diisi.',
             'nama.string' => 'Nama harus berupa teks.',
             'nama.max' => 'Nama maksimal 255 karakter.',

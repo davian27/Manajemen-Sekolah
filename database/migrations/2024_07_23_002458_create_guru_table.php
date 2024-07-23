@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('guru', function (Blueprint $table) {
             $table->id();
             $table->string('nuptk')->unique();
+            $table->string('image');
             $table->string('nama');
             $table->string('agama');
             $table->string('jenis_kelamin');

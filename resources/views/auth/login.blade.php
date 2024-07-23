@@ -18,7 +18,7 @@
   }
 </style>
 
-<body class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style="background-image: url('/assets/img/header.png');">
+<body class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style="background-image: url('/assets/images/header.png');">
   <div class="h-full">
     <!--Nav-->
     <div class="w-full container mx-auto">
