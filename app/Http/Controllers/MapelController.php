@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Mapel;
+use Illuminate\Http\Request;
+
+class MapelController extends Controller
+{
+    public function index()
+    {
+        $mapel = Mapel::all();
+        return view('mapel.index', compact('mapel'));
+    }
+
+    public function create()
+    {
+        return view('mapel.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+           'mapel' => ['required', 'string', 'unique:tb_mapel,mapel', 'max:30', 'regex:/^[a-zA-Z\s]+$/'],
+        ],[
+            'mapel.required' => 'mapel wajib diisi.',
+            'mapel.unique' => 'mapel sudah terdaftar.',
+            'mapel.max' => 'mapel maksimal 30 karakter.',
+            'mapel.regex' => 'mapel hanya boleh berisi huruf.',
+        ]);
+
+        Mapel::create($request->all());
+
+        return redirect()->route('mapel.index')->with('status', 'Data mapel berhasil disimpan.');
+    }
+
+    public function edit($id)
+    {
+        $mapel = Mapel::findOrFail($id);
+        return view('mapel.edit', compact('mapel'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    $mapel = Mapel::findOrFail($id);
+
+    $request->validate([
+        'mapel' => ['required', 'string', 'unique:tb_mapel,mapel,' . $mapel->id_mapel . ',id_mapel', 'max:30', 'regex:/^[a-zA-Z\s]+$/'],
+    ],[
+        'mapel.required' => 'mapel wajib diisi.',
+        'mapel.unique' => 'mapel sudah terdaftar.',
+        'mapel.max' => 'mapel maksimal 30 karakter.',
+        'mapel.regex' => 'mapel hanya boleh berisi huruf.',
+    ]);
+
+    $mapel->update([
+        'mapel' => $request->mapel,
+    ]);
+
+    return redirect()->route('mapel.index')->with('status', 'Data mapel berhasil diubah.');
+    }
+
+    public function destroy($id)
+    {
+        $mapel = Mapel::findOrFail($id);
+
+        if ($mapel->siswa()->exists()) {
+            return redirect()->route('mapel.index')->with('error', 'mapel tidak dapat dihapus karena masih terhubung dengan data siswa.');
+        }
+
+        $mapel->delete();
+
+        return redirect()->route('mapel.index')->with('status', 'Data mapel berhasil dihapus.');
+    }
+}
