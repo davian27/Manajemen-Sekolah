@@ -17,10 +17,10 @@
 <header class="relative px-8 bg-gray-100 shadow-md">
     <div class="w-full h-15 max-w-6xl mx-auto flex items-center justify-between">
         <div class="flex-grow font-bold text-xl">
-            <a href="../index.php">Manajemen Sekolah</a>
+            <a href="{{route('dashboard.index')}}">Manajemen Sekolah</a>
         </div>
         <ul class="flex gap-8 list-none">
-            <li><a href="../index.php" class="text-blue-600">Beranda</a></li>
+            <li><a href="{{route('dashboard.index')}}" class="text-blue-600">Beranda</a></li>
             <li><a href="./buku.php" class="text-blue-600">Data Siswa</a></li>
             <li><a href="./anggota.php" class="text-blue-600">Data Kelas</a></li>
             <li><a href="./pages/kategori.php" class="text-blue-600">Data Jurusan</a></li>
