@@ -32,9 +32,9 @@
                     <td class="py-2">{{ $g->nama }}</td>
                     <td class="py-2">{{ $g->jenis_kelamin }}</td>
                     <td class="py-2">{{ $g->agama }}</td>
-                    <td class="py-2">{{ $g->mapel->nama_mapel }}</td>
-                    <td class="py-2">{{ $g->kelas->nama_kelas }}</td>
-                    <td class="py-2">{{ $g->jurusan->nama_jurusan }}</td>
+                    <td class="py-2">{{ $g->mapel->mapel }}</td>
+                    <td class="py-2">{{ $g->kelas->kelas }}</td>
+                    <td class="py-2">{{ $g->jurusan->jurusan }}</td>
                     <td class="py-2">
                         <a href="{{ route('guru.edit', $g->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Edit</a>
                         <form action="{{ route('guru.destroy', $g->id) }}" method="POST" class="inline-block">

@@ -44,7 +44,7 @@
             <select name="id_mapel" id="id_mapel" class="w-full border border-gray-300 p-2 rounded">
                 <option value="">Pilih Mapel</option>
                 @foreach($mapel as $m)
-                    <option value="{{ $m->id }}" {{ old('id_mapel', $guru->id_mapel) == $m->id ? 'selected' : '' }}>{{ $m->nama_mapel }}</option>
+                    <option value="{{ $m->id_mapel }}" {{ old('id_mapel', $guru->id_mapel) == $m->id_mapel ? 'selected' : '' }}>{{ $m->mapel }}</option>
                 @endforeach
             </select>
             @error('id_mapel')
@@ -56,7 +56,7 @@
             <select name="id_kelas" id="id_kelas" class="w-full border border-gray-300 p-2 rounded">
                 <option value="">Pilih Kelas</option>
                 @foreach($kelas as $k)
-                    <option value="{{ $k->id }}" {{ old('id_kelas', $guru->id_kelas) == $k->id ? 'selected' : '' }}>{{ $k->nama_kelas }}</option>
+                    <option value="{{ $k->id_kelas }}" {{ old('id_kelas', $guru->id_kelas) == $k->id_kelas ? 'selected' : '' }}>{{ $k->kelas }}</option>
                 @endforeach
             </select>
             @error('id_kelas')
@@ -68,7 +68,7 @@
             <select name="id_jurusan" id="id_jurusan" class="w-full border border-gray-300 p-2 rounded">
                 <option value="">Pilih Jurusan</option>
                 @foreach($jurusan as $j)
-                    <option value="{{ $j->id }}" {{ old('id_jurusan', $guru->id_jurusan) == $j->id ? 'selected' : '' }}>{{ $j->nama_jurusan }}</option>
+                    <option value="{{ $j->id_jurusan }}" {{ old('id_jurusan', $guru->id_jurusan) == $j->id_jurusan ? 'selected' : '' }}>{{ $j->jurusan }}</option>
                 @endforeach
             </select>
             @error('id_jurusan')

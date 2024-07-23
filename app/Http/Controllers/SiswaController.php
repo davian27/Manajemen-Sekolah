@@ -34,11 +34,12 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nis' => ['required', 'unique:siswa,nis', 'regex:/^[a-zA-Z0-9]+$/'],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nama' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'agama' => 'required|string|max:255',
-            'phone' => 'nullable',
-            'email' => 'nullable',
+            'phone' => 'required|numeric|unique:siswa,phone',
+            'email' => 'required|email|unique:siswa,email',
             'id_kelas' => 'required|exists:tb_kelas,id_kelas',
             'id_jurusan' => 'required|exists:tb_jurusan,id_jurusan',
             'id_organisasi' => 'nullable|exists:tb_organisasi,id_organisasi',
@@ -54,6 +55,12 @@ class SiswaController extends Controller
             'nama.regex' => 'Nama hanya boleh berisi huruf.',
             'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
             'jenis_kelamin.in' => 'Jenis kelamin harus Laki-laki atau Perempuan.',
+            'phone.required' => 'No hp harus diisi.',
+            'phone.numeric' => 'No hp hanya boleh berisi angka.',
+            'phone.unique' => 'No hp sudah terdaftar.',
+            'email.required' => 'Email harus diisi.',
+            'email.email' => 'Masukkan email yang valid.',
+            'email.unique' => 'Email sudah terdaftar.',
             'agama.required' => 'Agama wajib diisi.',
             'agama.string' => 'Agama harus berupa teks.',
             'agama.max' => 'Agama maksimal 255 karakter.',
@@ -68,7 +75,17 @@ class SiswaController extends Controller
             'alamat.max' => 'Alamat maksimal 500 karakter.',
         ]);
 
-        Siswa::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('assets/images'), $imageName);
+            $data['image'] = $imageName;
+        } else {
+            $data['image'] = null; // Ensure image field is set to null if no file is uploaded
+        }
+
+        Siswa::create($data);
 
         return redirect()->route('siswa.index')->with('status', 'Data siswa berhasil disimpan!');
     }

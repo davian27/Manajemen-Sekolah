@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Data Jurusan')
+@section('title', 'Data Mapel')
 
 @section('content')
-<body class="bg-slate-200">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-7">
             <div class="card shadow">
-                <div class="card-header bg-primary text-white fw-bold">Data Jurusan</div>
+                <div class="card-header bg-primary text-white fw-bold">Data Mapel</div>
                 <div class="card-body">
                     @if(session('status'))
                         <div class="alert alert-success mt-3">
@@ -22,12 +21,12 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('jurusan.create') }}" class="btn btn-success m-3">Tambah Jurusan</a>
+                    <a href="{{ route('mapel.create') }}" class="btn btn-success m-3">Tambah mapel</a>
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>
-                                <th>Jurusan</th>
+                                <th>mapel</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -37,13 +36,13 @@
                             $no = 1;
                             ?>
 
-                            @foreach($jurusan as $j)
+                            @foreach($mapel as $k)
                             <tr>
                                 <td class="text-center col-md-1">{{ $no++ }}</td>
-                                <td class="col-md-7">{{ $j->jurusan }}</td>
+                                <td class="col-md-7">{{ $k->mapel }}</td>
                                 <td class="text-center col-md-2">
-                                    <a href="{{ route('jurusan.edit', $j->id_jurusan) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <form action="{{ route('jurusan.destroy', $j->id_jurusan) }}" method="POST" class="d-inline">
+                                    <a href="{{ route('mapel.edit', $k->id_mapel) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <form action="{{ route('mapel.destroy', $k->id_mapel) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fa-solid fa-trash"></i></button>
