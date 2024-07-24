@@ -67,8 +67,6 @@ class GuruController extends Controller
             // Handle image upload and storage
             $imagePath = $request->file('image')->store('images', 'public');
             $data['image'] = $imagePath;
-        } else {
-            $data['image'] = 'default.jpg';
         }
 
         Guru::create($data);
@@ -97,7 +95,7 @@ class GuruController extends Controller
             'id_kelas' => 'required|exists:kelas,id',
             'id_jurusan' => 'required|exists:jurusan,id',
             'id_mapel' => 'required|exists:mapel,id',
-            'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            
         ], [
             'nuptk.required' => 'Nuptk wajib diisi.',
             'nuptk.unique' => 'Nuptk sudah terdaftar.',
