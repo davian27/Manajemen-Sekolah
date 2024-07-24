@@ -11,9 +11,12 @@ use App\Models\Ekskul;
 
 class SiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $siswa = Siswa::with(['kelas', 'jurusan', 'organisasi', 'ekskul'])->get();
+        $siswa = Siswa::with(['kelas', 'jurusan', 'organisasi', 'ekskul'])
+        ->where('nama',"LIKE", "%$request->key%")
+        ->orWhereRaw('nis LIKE?',['%'.$request->key.'%'])
+        ->simplePaginate(3);
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
         $organisasi = Organisasi::all();
