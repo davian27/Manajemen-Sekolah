@@ -64,6 +64,7 @@ class GuruController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
+            // Handle image upload and storage
             $imagePath = $request->file('image')->store('images', 'public');
             $data['image'] = $imagePath;
         } else {
