@@ -1,8 +1,8 @@
-<?php
-
+<?php 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Jurusan;
@@ -78,11 +78,8 @@ class SiswaController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('assets/images'), $imageName);
-            $data['image'] = $imageName;
-        } else {
-            $data['image'] = null; // Ensure image field is set to null if no file is uploaded
+            $imagePath = $request->file('image')->store('images', 'public');
+            $data['image'] = $imagePath;
         }
 
         Siswa::create($data);
@@ -104,7 +101,7 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nis' => ['required', 'unique:siswa,nis,' . $id, 'regex:/^[a-zA-Z0-9]+$/'],
-        'nama' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
+            'nama' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'agama' => 'required|string|max:255',
             'phone' => 'nullable',
@@ -139,15 +136,31 @@ class SiswaController extends Controller
         ]);
 
         $siswa = Siswa::findOrFail($id);
-        $siswa->update($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            if ($siswa->image) {
+                Storage::delete('public/' . $siswa->image);
+            }
+            $imagePath = $request->file('image')->store('images', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        $siswa->update($data);
 
         return redirect()->route('siswa.index')->with('status', 'Data siswa berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        Siswa::findOrFail($id)->delete();
+        $siswa = Siswa::findOrFail($id);
+        if ($siswa->image) {
+            Storage::delete('public/' . $siswa->image);
+        }
+        $siswa->delete();
 
         return redirect()->route('siswa.index')->with('status', 'Data siswa berhasil dihapus!');
     }
 }
+
+ ?>

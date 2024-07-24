@@ -21,11 +21,11 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-           'jurusan' => ['required', 'string', 'unique:tb_jurusan,jurusan', 'max:30', 'regex:/^[a-zA-Z0-9 ]+$/'],
+           'jurusan' => ['required', 'string', 'unique:tb_jurusan,jurusan', 'max:50', 'regex:/^[a-zA-Z0-9 ]+$/'],
         ],[
             'jurusan.required' => 'jurusan wajib diisi.',
             'jurusan.unique' => 'jurusan sudah terdaftar.',
-            'jurusan.max' => 'jurusan maksimal 30 karakter.',
+            'jurusan.max' => 'jurusan maksimal 50 karakter.',
             'jurusan.regex' => 'jurusan hanya boleh berisi huruf dan angka.',
         ]);
 
