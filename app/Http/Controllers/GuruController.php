@@ -41,6 +41,7 @@ class GuruController extends Controller
             'id_mapel' => 'required|exists:tb_mapel,id_mapel',
             'id_kelas' => 'required|exists:tb_kelas,id_kelas',
             'id_jurusan' => 'required|exists:tb_jurusan,id_jurusan',
+            'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'nuptk.required' => 'Nuptk wajib diisi.',
             'nuptk.unique' => 'Nuptk sudah terdaftar.',
@@ -89,14 +90,15 @@ class GuruController extends Controller
         $request->validate([
             'nuptk' => ['required', 'unique:guru,nuptk,' . $id, 'regex:/^[a-zA-Z0-9]+$/'],
             'nama' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'agama' => 'required|string|max:255',
             'phone' => 'nullable',
             'email' => 'nullable',
+
             'id_mapel' => 'required|exists:tb_mapel,id_mapel',
             'id_kelas' => 'required|exists:tb_kelas,id_kelas',
             'id_jurusan' => 'required|exists:tb_jurusan,id_jurusan',
+
         ], [
             'nuptk.required' => 'Nuptk wajib diisi.',
             'nuptk.unique' => 'Nuptk sudah terdaftar.',

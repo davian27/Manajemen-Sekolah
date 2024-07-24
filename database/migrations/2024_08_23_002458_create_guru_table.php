@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('nama');
             $table->string('agama');
             $table->string('jenis_kelamin');
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
+            $table->string('phone');
+            $table->string('email');
             $table->unsignedBigInteger('id_kelas');
             $table->unsignedBigInteger('id_jurusan');
             $table->unsignedBigInteger('id_mapel');
