@@ -16,6 +16,7 @@
         <thead>
             <tr>
                 <th class="py-2">NUPTK</th>
+                <th class="py-2">Foto</th>
                 <th class="py-2">Nama</th>
                 <th class="py-2">Jenis Kelamin</th>
                 <th class="py-2">Agama</th>
@@ -29,6 +30,7 @@
             @foreach($guru as $g)
                 <tr>
                     <td class="py-2">{{ $g->nuptk }}</td>
+                    <td><img width="100px" height="100px" src="{{ asset('storage/' . $s->image) }}" alt="{{ $s->nama }}" class="img-fluid"></td>
                     <td class="py-2">{{ $g->nama }}</td>
                     <td class="py-2">{{ $g->jenis_kelamin }}</td>
                     <td class="py-2">{{ $g->agama }}</td>

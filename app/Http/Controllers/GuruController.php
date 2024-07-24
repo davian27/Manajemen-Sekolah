@@ -12,7 +12,7 @@ class GuruController extends Controller
 {
     public function index()
     {
-        $guru = Guru::with(['mapel','kelas', 'jurusan'])->get();
+        $guru = Guru::with(['mapel', 'kelas', 'jurusan'])->get();
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
@@ -24,7 +24,7 @@ class GuruController extends Controller
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
-        return view('guru.create', compact('mapel','kelas', 'jurusan'));
+        return view('guru.create', compact('mapel', 'kelas', 'jurusan'));
     }
 
     public function store(Request $request)
@@ -39,6 +39,7 @@ class GuruController extends Controller
             'id_mapel' => 'required|exists:tb_mapel,id_mapel',
             'id_kelas' => 'required|exists:tb_kelas,id_kelas',
             'id_jurusan' => 'required|exists:tb_jurusan,id_jurusan',
+            'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'nuptk.required' => 'Nuptk wajib diisi.',
             'nuptk.unique' => 'Nuptk sudah terdaftar.',
@@ -60,7 +61,16 @@ class GuruController extends Controller
             'id_jurusan.exists' => 'Jurusan tidak valid.',
         ]);
 
-        Guru::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $data['image'] = $imagePath;
+        } else {
+            $data['image'] = 'default.jpg';
+        }
+
+        Guru::create($data);
 
         return redirect()->route('guru.index')->with('status', 'Data guru berhasil disimpan!');
     }
@@ -78,18 +88,19 @@ class GuruController extends Controller
     {
         $request->validate([
             'nuptk' => ['required', 'unique:guru,nuptk,' . $id, 'regex:/^[a-zA-Z0-9]+$/'],
-        'nama' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
+            'nama' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'agama' => 'required|string|max:255',
             'phone' => 'nullable',
             'email' => 'nullable',
-            'id_kelas' => 'required|exists:tb_kelas,id_kelas',
-            'id_jurusan' => 'required|exists:tb_jurusan,id_jurusan',
-            'id_mapel' => 'required|exists:tb_mapel,id_mapel',
+            'id_kelas' => 'required|exists:kelas,id',
+            'id_jurusan' => 'required|exists:jurusan,id',
+            'id_mapel' => 'required|exists:mapel,id',
+            'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
-            'nuptk.required' => 'nuptk wajib diisi.',
-            'nuptk.unique' => 'nuptk sudah terdaftar.',
-            'nuptk.regex' => 'nuptk hanya boleh berisi huruf dan angka.',
+            'nuptk.required' => 'Nuptk wajib diisi.',
+            'nuptk.unique' => 'Nuptk sudah terdaftar.',
+            'nuptk.regex' => 'Nuptk hanya boleh berisi huruf dan angka.',
             'nama.required' => 'Nama wajib diisi.',
             'nama.string' => 'Nama harus berupa teks.',
             'nama.max' => 'Nama maksimal 255 karakter.',
@@ -108,7 +119,15 @@ class GuruController extends Controller
         ]);
 
         $guru = Guru::findOrFail($id);
-        $guru->update($request->all());
+
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        $guru->update($data);
 
         return redirect()->route('guru.index')->with('status', 'Data guru berhasil diupdate!');
     }
