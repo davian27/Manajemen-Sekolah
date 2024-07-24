@@ -11,9 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class GuruController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $guru = Guru::with(['mapel', 'kelas', 'jurusan'])->get();
+        $guru = Guru::with(['mapel', 'kelas', 'jurusan'])->where('nama',"LIKE", "%$request->key%")
+        ->orWhereRaw('nuptk LIKE?',['%'.$request->key.'%'])
+        ->simplePaginate(3);;
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
