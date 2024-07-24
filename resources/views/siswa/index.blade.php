@@ -30,9 +30,15 @@
                         </form>
                     </div>
                 </div>
+                <div class="my-2 mb-3 ">
+                    <hr class="mb-3 border-t-4 border-gray-500">
+                    {{ $siswa->links() }}
+                </div>
+                @if($message)
+                <p>{{ $message }}</p>
+                @endif
 
                 @foreach($siswa as $s)
-                <hr>
                 <div class="card mb-3 mt-3 border-0">
                     <div class="row g-0">
                         <div class="col-md-2">
@@ -41,6 +47,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">{{ $s->nama }}</h5>
+                                <hr class="col-md-2 mb-2">
                                 <p class="card-text"><strong>NIS:</strong> {{ $s->nis }}</p>
                                 <p class="card-text"><strong>Jenis Kelamin:</strong> {{ $s->jenis_kelamin }}</p>
                                 <p class="card-text"><strong>Agama:</strong> {{ $s->agama }}</p>
@@ -69,11 +76,14 @@
                         </div>
                     </div>
                 </div>
+                <hr>
                 @endforeach
-                {{ $siswa->links() }}
+                <div class="mt-3">
+                    {{ $siswa->links() }}
+                </div>
             </div>
         </div>
     </div>
-@endsection
+    @endsection
 
 </body>

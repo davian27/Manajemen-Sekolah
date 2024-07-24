@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -13,16 +14,22 @@ class SiswaController extends Controller
 {
     public function index(Request $request)
     {
-        $siswa = Siswa::with(['kelas', 'jurusan', 'organisasi', 'ekskul'])
-        ->where('nama',"LIKE", "%$request->key%")
-        ->orWhereRaw('nis LIKE?',['%'.$request->key.'%'])
-        ->simplePaginate(3);
+        $query = Siswa::with(['kelas', 'jurusan', 'organisasi', 'ekskul'])
+            ->where('nama', 'LIKE', "%{$request->key}%")
+            ->orWhereRaw('nis LIKE ?', ['%' . $request->key . '%']);
+    
+        $siswa = $query->simplePaginate(2);
+    
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
         $organisasi = Organisasi::all();
         $ekskul = Ekskul::all();
-        return view('siswa.index', compact('siswa', 'kelas', 'jurusan', 'organisasi', 'ekskul'));
+    
+        $message = $siswa->isEmpty() ? 'Data tidak ditemukan' : '';
+    
+        return view('siswa.index', compact('siswa', 'kelas', 'jurusan', 'organisasi', 'ekskul', 'message'));
     }
+    
 
     public function create()
     {
@@ -177,5 +184,3 @@ class SiswaController extends Controller
         return redirect()->route('siswa.index')->with('status', 'Data siswa berhasil dihapus!');
     }
 }
-
- ?>
