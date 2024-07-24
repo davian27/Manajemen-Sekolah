@@ -15,10 +15,21 @@
                     {{ session('status') }}
                 </div>
                 @endif
-
-                <a href="{{ route('siswa.create') }}" class="btn btn-success m-3">
-                    <i class="fa-solid fa-user-plus"></i>&nbsp;Tambah Data
-                </a>
+                <div class=" d-flex">
+                    <a href="{{ route('siswa.create') }}" class="btn btn-success m-3">
+                        <i class="fa-solid fa-user-plus"></i>&nbsp;Tambah Data
+                    </a>
+                    <a href="{{ route('siswa.index') }}" class="btn btn-primary m-3">
+                        <i class="fa-solid fa-refresh"></i>&nbsp;Refresh
+                    </a>
+                    <div class="d-flex justify-content-end ml-96">
+                        <form action="{{ route('siswa.index') }}" method="get" class="d-flex">
+                            @csrf
+                            <input class="form-control col-md-8 h-10 ml-36" type="text" name="key" placeholder="Cari Siswa">
+                            <button class="btn btn-primary btn-sm ml-2 col-md-5 h-10" type="submit">Cari</button>
+                        </form>
+                    </div>
+                </div>
 
                 @foreach($siswa as $s)
                 <hr>
@@ -59,7 +70,7 @@
                     </div>
                 </div>
                 @endforeach
-
+                {{ $siswa->links() }}
             </div>
         </div>
     </div>
