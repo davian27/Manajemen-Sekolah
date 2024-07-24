@@ -7,6 +7,7 @@ use App\Models\Jurusan;
 use App\Models\Kelas;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GuruController extends Controller
 {
@@ -32,6 +33,7 @@ class GuruController extends Controller
         $request->validate([
             'nuptk' => ['required', 'unique:guru,nuptk', 'regex:/^[a-zA-Z0-9]+$/'],
             'nama' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'agama' => 'required|string|max:255',
             'phone' => 'nullable',
@@ -92,10 +94,11 @@ class GuruController extends Controller
             'agama' => 'required|string|max:255',
             'phone' => 'nullable',
             'email' => 'nullable',
-            'id_kelas' => 'required|exists:kelas,id',
-            'id_jurusan' => 'required|exists:jurusan,id',
-            'id_mapel' => 'required|exists:mapel,id',
-            
+
+            'id_mapel' => 'required|exists:tb_mapel,id_mapel',
+            'id_kelas' => 'required|exists:tb_kelas,id_kelas',
+            'id_jurusan' => 'required|exists:tb_jurusan,id_jurusan',
+
         ], [
             'nuptk.required' => 'Nuptk wajib diisi.',
             'nuptk.unique' => 'Nuptk sudah terdaftar.',
@@ -109,19 +112,22 @@ class GuruController extends Controller
             'agama.required' => 'Agama wajib diisi.',
             'agama.string' => 'Agama harus berupa teks.',
             'agama.max' => 'Agama maksimal 255 karakter.',
+            'id_mapel.required' => 'Mapel wajib diisi.',
+            'id_mapel.exists' => 'Mapel tidak valid.',
             'id_kelas.required' => 'Kelas wajib diisi.',
             'id_kelas.exists' => 'Kelas tidak valid.',
             'id_jurusan.required' => 'Jurusan wajib diisi.',
             'id_jurusan.exists' => 'Jurusan tidak valid.',
-            'id_mapel.required' => 'Mapel wajib diisi.',
-            'id_mapel.exists' => 'Mapel tidak valid.',
         ]);
 
         $guru = Guru::findOrFail($id);
-
         $data = $request->all();
 
         if ($request->hasFile('image')) {
+            if ($guru->image) {
+                // Delete old image if it exists
+                Storage::delete('public/' . $guru->image);
+            }
             $imagePath = $request->file('image')->store('images', 'public');
             $data['image'] = $imagePath;
         }
@@ -133,7 +139,11 @@ class GuruController extends Controller
 
     public function destroy($id)
     {
-        Guru::findOrFail($id)->delete();
+        $guru = Guru::findOrFail($id);
+        if ($guru->image) {
+            Storage::delete('public/' . $guru->image);
+        }
+        $guru->delete();
 
         return redirect()->route('guru.index')->with('status', 'Data guru berhasil dihapus!');
     }

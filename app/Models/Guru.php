@@ -12,7 +12,7 @@ class Guru extends Model
     protected $table = 'guru';
 
     protected $fillable = [
-        'nuptk', 'nama', 'agama', 'jenis_kelamin', 'phone', 'email', 'id_kelas', 'id_jurusan', 'id_mapel',
+        'nuptk', 'nama', 'jenis_kelamin', 'agama', 'phone', 'email', 'id_mapel', 'id_kelas', 'id_jurusan', 'image'
     ];
 
     public function kelas()
