@@ -10,21 +10,15 @@
             var dropdownMenu = document.getElementById('dropdown-menu');
             dropdownMenu.classList.toggle('hidden');
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentPath = window.location.pathname;
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPath) {
-                    link.classList.add('active');
-                }
-            });
-        });
     </script>
     <style>
         .active {
             font-weight: bold;
             color: #2563eb; /* Tailwind Blue-600 */
+        }
+        .active-orange {
+            font-weight: bold;
+            color: #f97316; /* Tailwind Orange-500 */
         }
     </style>
 </head>
@@ -38,14 +32,14 @@
                     <a href="{{ route('dashboard.index') }}">Manajemen Sekolah</a>
                 </div>
                 <nav class="hidden md:flex space-x-4 ml-10">
-                    <a href="{{ route('dashboard.index') }}" class="text-gray-700 hover:text-blue-600">Beranda</a>
-                    <a href="{{ route('siswa.index') }}" class="text-gray-700 hover:text-blue-600">Data Siswa</a>
-                    <a href="{{ route('guru.index') }}" class="text-gray-700 hover:text-blue-600">Data Guru</a>
-                    <a href="{{ route('kelas.index') }}" class="text-gray-700 hover:text-blue-600">Data Kelas</a>
-                    <a href="{{ route('jurusan.index') }}" class="text-gray-700 hover:text-blue-600">Data Jurusan</a>
-                    <a href="{{ route('organisasi.index') }}" class="text-gray-700 hover:text-blue-600">Data Organisasi</a>
-                    <a href="{{ route('ekskul.index') }}" class="text-gray-700 hover:text-blue-600">Data Ekstrakurikuler</a>
-                    <a href="{{ route('mapel.index') }}" class="text-gray-700 hover:text-blue-600">Data Mapel</a>
+                    <a href="{{ route('dashboard.index') }}" class="text-gray-700 hover:text-blue-600 {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">Beranda</a>
+                    <a href="{{ route('siswa.index') }}" class="text-gray-700 hover:text-blue-600 {{ request()->routeIs('siswa.index') ? 'active-orange' : '' }}">Data Siswa</a>
+                    <a href="{{ route('guru.index') }}" class="text-gray-700 hover:text-blue-600 {{ request()->routeIs('guru.index') ? 'active' : '' }}">Data Guru</a>
+                    <a href="{{ route('kelas.index') }}" class="text-gray-700 hover:text-blue-600 {{ request()->routeIs('kelas.index') ? 'active-orange' : '' }}">Data Kelas</a>
+                    <a href="{{ route('jurusan.index') }}" class="text-gray-700 hover:text-blue-600 {{ request()->routeIs('jurusan.index') ? 'active' : '' }}">Data Jurusan</a>
+                    <a href="{{ route('organisasi.index') }}" class="text-gray-700 hover:text-blue-600 {{ request()->routeIs('organisasi.index') ? 'active-orange' : '' }}">Data Organisasi</a>
+                    <a href="{{ route('ekskul.index') }}" class="text-gray-700 hover:text-blue-600 {{ request()->routeIs('ekskul.index') ? 'active' : '' }}">Data Ekstrakurikuler</a>
+                    <a href="{{ route('mapel.index') }}" class="text-gray-700 hover:text-blue-600 {{ request()->routeIs('mapel.index') ? 'active-orange' : '' }}">Data Mapel</a>
                 </nav>
             </div>
             <div class="relative">
