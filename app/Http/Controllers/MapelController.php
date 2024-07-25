@@ -66,7 +66,7 @@ class MapelController extends Controller
         $mapel = Mapel::findOrFail($id);
 
         if ($mapel->siswa()->exists()) {
-            return redirect()->route('mapel.index')->with('error', 'mapel tidak dapat dihapus karena masih terhubung dengan data siswa.');
+            return redirect()->route('mapel.index')->with('error', 'mapel tidak dapat dihapus karena masih terhubung dengan data guru.');
         }
 
         $mapel->delete();

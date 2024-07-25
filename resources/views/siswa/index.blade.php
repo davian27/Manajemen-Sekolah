@@ -7,9 +7,9 @@
 <body class="bg-slate-200">
     <div class="container">
         {{-- card --}}
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white fw-bold">Data Siswa</div>
-            <div class="card-body">
+        <div class="card shadow bg-slate-600/50">
+            <div class="card-header bg-indigo-600/40 text-white fw-bold">Data Siswa</div>
+            <div class="card-body ">
                 @if (session('status'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('status') }}
@@ -35,29 +35,29 @@
                     {{ $siswa->links() }}
                 </div>
                 @if($message)
-                <p>{{ $message }}</p>
+                <p class="text-white text-lg">{{ $message }}</p>
                 @endif
 
                 @foreach($siswa as $s)
-                <div class="card mb-3 mt-3 border-0">
+                <div class="card mb-3 mt-3 border-0 bg-slate-500/40">
                     <div class="row g-0">
                         <div class="col-md-2">
-                            <img src="{{ asset('storage/' . $s->image) }}" alt="{{ $s->nama }}" class="img-fluid rounded-start" style="width: 370px; height: 370px; object-fit: cover;">
+                            <img src="{{ asset('storage/' . $s->image) }}" alt="{{ $s->nama }}" class="img-fluid rounded-start" style="width: 370px; height: 390px; object-fit: cover;">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title fw-bold">{{ $s->nama }}</h5>
-                                <hr class="col-md-2 mb-2">
-                                <p class="card-text"><strong>NIS:</strong> {{ $s->nis }}</p>
-                                <p class="card-text"><strong>Jenis Kelamin:</strong> {{ $s->jenis_kelamin }}</p>
-                                <p class="card-text"><strong>Agama:</strong> {{ $s->agama }}</p>
-                                <p class="card-text"><strong>No HP:</strong> {{ $s->phone }}</p>
-                                <p class="card-text"><strong>Email:</strong> {{ $s->email }}</p>
-                                <p class="card-text"><strong>Kelas:</strong> {{ $s->kelas->kelas }}</p>
-                                <p class="card-text"><strong>Jurusan:</strong> {{ $s->jurusan->jurusan }}</p>
-                                <p class="card-text"><strong>Organisasi:</strong> {{ $s->organisasi->organisasi ?? 'N/A' }}</p>
-                                <p class="card-text"><strong>Ekskul:</strong> {{ $s->ekskul->ekskul ?? 'N/A' }}</p>
-                                <p class="card-text"><strong>Alamat:</strong> {{ $s->alamat }}</p>
+                                <h5 class="card-title fw-bold text-white text-xl">{{ $s->nama }}</h5>
+                                <hr class="col-md-2 mb-2 ">
+                                <p class="card-text"><strong class="text-slate-300">NIS : </strong><span class="text-white">{{ $s->nis }}</span></p>
+                                <p class="card-text"><strong class="text-slate-300">Jenis Kelamin : </strong><span class="text-white">{{ $s->jenis_kelamin }}</span></p>
+                                <p class="card-text"><strong class="text-slate-300">Agama : </strong><span class="text-white"> {{ $s->agama }}</span></p>
+                                <p class="card-text"><strong class="text-slate-300">No HP : </strong><span class="text-white">{{ $s->phone }}</span></p>
+                                <p class="card-text"><strong class="text-slate-300">Email : </strong><span class="text-white">{{ $s->email }}</span></p>
+                                <p class="card-text"><strong class="text-slate-300">Kelas : </strong><span class="text-white">{{ $s->kelas->kelas }}</span></p>
+                                <p class="card-text"><strong class="text-slate-300">Jurusan : </strong><span class="text-white">{{ $s->jurusan->jurusan }}</span></p>
+                                <p class="card-text"><strong class="text-slate-300">Organisasi : </strong><span class="text-white">{{ $s->organisasi->organisasi ?? 'N/A' }}</span></p>
+                                <p class="card-text"><strong class="text-slate-300">Ekskul : </strong><span class="text-white">{{ $s->ekskul->ekskul ?? 'N/A' }}</span></p>
+                                <p class="card-text"><strong class="text-slate-300">Alamat : </strong><span class="text-white">{{ $s->alamat }}</span></p>
                                 <div class="d-flex mt-4">
                                     <div style="display:inline;">
                                         <a href="{{ route('siswa.edit', $s->id) }}" class="btn btn-warning btn-sm text-black">
@@ -76,7 +76,6 @@
                         </div>
                     </div>
                 </div>
-                <hr>
                 @endforeach
                 <div class="mt-3">
                     {{ $siswa->links() }}

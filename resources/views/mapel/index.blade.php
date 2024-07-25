@@ -6,8 +6,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-7">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white fw-bold">Data Mapel</div>
+            <div class="card shadow bg-slate-600/50">
+                <div class="card-header bg-indigo-600/40 text-white fw-bold">Data Mapel</div>
                 <div class="card-body">
                     @if(session('status'))
                         <div class="alert alert-success mt-3">
@@ -22,11 +22,11 @@
                     @endif
 
                     <a href="{{ route('mapel.create') }}" class="btn btn-success m-3">Tambah mapel</a>
-                    <table class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table-dark table-striped table-hover">
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>
-                                <th>mapel</th>
+                                <th>Mapel</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>

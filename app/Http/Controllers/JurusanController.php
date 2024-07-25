@@ -66,7 +66,7 @@ class JurusanController extends Controller
         $jurusan = Jurusan::findOrFail($id);
 
         if ($jurusan->siswa()->exists()) {
-            return redirect()->route('jurusan.index')->with('error', 'jurusan tidak dapat dihapus karena masih terhubung dengan data siswa.');
+            return redirect()->route('jurusan.index')->with('error', 'jurusan tidak dapat dihapus karena masih terhubung dengan data.');
         }
 
         $jurusan->delete();

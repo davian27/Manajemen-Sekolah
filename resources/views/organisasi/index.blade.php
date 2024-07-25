@@ -6,8 +6,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-7">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white fw-bold">Data Organisasi</div>
+            <div class="card shadow bg-slate-600/50">
+                <div class="card-header bg-indigo-600/40 text-white fw-bold">Data Organisasi</div>
                 <div class="card-body">
                     @if(session('status'))
                         <div class="alert alert-success mt-3">
@@ -22,7 +22,7 @@
                     @endif
 
                     <a href="{{ route('organisasi.create') }}" class="btn btn-success m-3">Tambah organisasi</a>
-                    <table class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table-dark table-striped table-hover">
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>

@@ -7,14 +7,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white fw-bold">Tambah Data Guru</div>
+            <div class="card shadow bg-slate-600/50">
+                <div class="card-header bg-indigo-600/40 text-white fw-bold">Tambah Data Guru</div>
                 <div class="card-body">
 
                     <form action="{{ route('guru.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="nuptk" class="form-label">NUPTK</label>
+                            <label for="nuptk" class="form-label text-white">NUPTK</label>
                             <input type="text" name="nuptk" id="nuptk" class="form-control" value="{{ old('nuptk') }}" placeholder="Masukkan NUPTK">
                             @error('nuptk')
                                 <div class="text-danger">{{ $message }}</div>
@@ -23,7 +23,7 @@
 
                         <div class="mb-3">
                             <div class="form-group">
-                                <strong>Image:</strong>
+                                <label class="form-label text-white">Foto</label>
                                 <input type="file" name="image" class="form-control">
                             </div>
                             @error('image')
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama</label>
+                            <label for="nama" class="form-label text-white">Nama</label>
                             <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama') }}" placeholder="Masukkan nama">
                             @error('nama')
                                 <div class="text-danger">{{ $message }}</div>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                            <label for="jenis_kelamin" class="form-label text-white">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-select">
                                 <option value="">Pilih Jenis Kelamin</option>
                                 <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="agama" class="form-label">Agama</label>
+                            <label for="agama" class="form-label text-white">Agama</label>
                             <select name="agama" id="agama" class="form-select">
                                 <option value="">Agama</option>
                                 <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_mapel" class="form-label">Mapel</label>
+                            <label for="id_mapel" class="form-label text-white">Mapel</label>
                             <select name="id_mapel" id="id_mapel" class="form-select">
                                 <option value="">Pilih Mapel</option>
                                 @foreach($mapel as $m)
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_kelas" class="form-label">Kelas</label>
+                            <label for="id_kelas" class="form-label text-white">Kelas</label>
                             <select name="id_kelas" id="id_kelas" class="form-select">
                                 <option value="">Pilih Kelas</option>
                                 @foreach($kelas as $k)
@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_jurusan" class="form-label">Jurusan</label>
+                            <label for="id_jurusan" class="form-label text-white">Jurusan</label>
                             <select name="id_jurusan" id="id_jurusan" class="form-select">
                                 <option value="">Pilih Jurusan</option>
                                 @foreach($jurusan as $j)
@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Phone</label>
+                            <label for="phone" class="form-label text-white">Phone</label>
                             <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}" placeholder="Masukkan nomor telepon">
                             @error('phone')
                                 <div class="text-danger">{{ $message }}</div>
@@ -115,7 +115,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label text-white">Email</label>
                             <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" placeholder="Masukkan email">
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>

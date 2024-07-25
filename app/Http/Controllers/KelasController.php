@@ -65,7 +65,7 @@ class KelasController extends Controller
 
         // Check if the class is linked to any students
         if ($kelas->siswa()->exists()) {
-            return redirect()->route('kelas.index')->with('error', 'Kelas tidak dapat dihapus karena masih terhubung dengan data siswa.');
+            return redirect()->route('kelas.index')->with('error', 'Kelas tidak dapat dihapus karena masih terhubung dengan data.');
         }
 
         // Proceed with deletion if no students are linked

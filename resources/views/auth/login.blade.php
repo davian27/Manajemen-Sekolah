@@ -18,7 +18,7 @@
   }
 </style>
 
-<body class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style="background-image: url('/assets/images/header.png');">
+<body class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style="background-image: url('/assets/images/header.png')">
   <div class="h-full">
     <!--Nav-->
     <div class="w-full container mx-auto">
@@ -100,7 +100,7 @@
       <div class="w-full pt-16 pb-6 text-sm text-center md:text-left fade-in">
         <a class="text-gray-500 no-underline hover:no-underline" href="#">&copy; App 2024</a>
         - website by
-        <a class="text-gray-500 no-underline hover:no-underline" href="#">smk1lumajang.com</a>
+        <a class="text-gray-500 no-underline hover:no-underline" href="#">manajemensekolah.com</a>
       </div>
     </div>
   </div>

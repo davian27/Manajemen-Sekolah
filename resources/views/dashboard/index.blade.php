@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'dashboard')
+@section('title', 'Beranda')
 
 @section('content')
 <body class="bg-slate-200">

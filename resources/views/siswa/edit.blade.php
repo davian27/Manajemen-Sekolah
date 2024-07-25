@@ -7,15 +7,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white fw-bold">Edit Data Siswa</div>
+            <div class="card shadow bg-slate-600/50">
+                <div class="card-header bg-indigo-600/40 text-white fw-bold">Edit Data Siswa</div>
                 <div class="card-body">
                     <form action="{{ route('siswa.update', $siswa->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
                         <div class="mb-3">
-                            <label for="nis" class="form-label">NIS</label>
+                            <label for="nis" class="form-label text-white">NIS</label>
                             <input type="text" name="nis" id="nis" class="form-control" value="{{ $siswa->nis }}">
                             @error('nis')
                             <div class="text-danger">{{ $message }}</div>
@@ -24,7 +24,7 @@
 
                         <div class="mb-3">
                             <div class="form-group">
-                                <strong>Image:</strong>
+                                <label class="form-label text-white">Foto</label>
                                 <input type="file" name="image" class="form-control" id="image">
                             </div>
                             <img id="image-preview" src="{{ asset('storage/' . $siswa->image) }}" alt="Image Preview" class="mt-2" style="max-width: 200px;">
@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama</label>
+                            <label for="nama" class="form-label text-white">Nama</label>
                             <input type="text" name="nama" id="nama" class="form-control" value="{{ $siswa->nama }}">
                             @error('nama')
                             <div class="text-danger">{{ $message }}</div>
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                            <label for="jenis_kelamin" class="form-label text-white">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                 <option value="">Pilih Jenis Kelamin</option>
                                 <option value="Laki-laki" {{ $siswa->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
@@ -54,11 +54,15 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="agama" class="form-label">Agama</label>
+                            <label for="agama" class="form-label text-white">Agama</label>
                             <select name="agama" id="agama" class="form-control">
                                 <option value="">Pilih Agama</option>
                                 <option value="Islam" {{ old('agama', $siswa->agama) == 'Islam' ? 'selected' : '' }}>Islam</option>
                                 <option value="Kristen" {{ old('agama', $siswa->agama) == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                                <option value="Hindu" {{ old('agama', $siswa->agama) == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                <option value="Buddha" {{ old('agama', $siswa->agama) == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+                                <option value="Konghucu" {{ old('agama', $siswa->agama) == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+                                <option value="Katholik" {{ old('agama', $siswa->agama) == 'Katholik' ? 'selected' : '' }}>Katholik</option>
                             </select>
                             @error('agama')
                             <div class="text-danger">{{ $message }}</div>
@@ -66,7 +70,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Phone</label>
+                            <label for="phone" class="form-label text-white">Phone</label>
                             <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone', $siswa->phone) }}" placeholder="Masukkan no hp anda">
                             @error('phone')
                             <div class="text-danger">{{ $message }}</div>
@@ -74,7 +78,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label text-white">Email</label>
                             <input type="text" name="email" id="email" class="form-control" value="{{ old('email', $siswa->email) }}" placeholder="Masukkan email anda">
                             @error('email')
                             <div class="text-danger">{{ $message }}</div>
@@ -82,7 +86,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_kelas" class="form-label">Kelas</label>
+                            <label for="id_kelas" class="form-label text-white">Kelas</label>
                             <select name="id_kelas" id="id_kelas" class="form-control">
                                 <option value="">Pilih Kelas</option>
                                 @foreach($kelas as $k)
@@ -95,7 +99,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_jurusan" class="form-label">Jurusan</label>
+                            <label for="id_jurusan" class="form-label text-white">Jurusan</label>
                             <select name="id_jurusan" id="id_jurusan" class="form-control">
                                 <option value="">Pilih Jurusan</option>
                                 @foreach($jurusan as $j)
@@ -108,7 +112,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_organisasi" class="form-label">Organisasi</label>
+                            <label for="id_organisasi" class="form-label text-white">Organisasi</label>
                             <select name="id_organisasi" id="id_organisasi" class="form-control">
                                 <option value="">Pilih Organisasi (Optional)</option>
                                 @foreach($organisasi as $o)
@@ -121,7 +125,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_ekskul" class="form-label">Ekskul</label>
+                            <label for="id_ekskul" class="form-label text-white">Ekskul</label>
                             <select name="id_ekskul" id="id_ekskul" class="form-control">
                                 <option value="">Pilih Ekskul (Optional)</option>
                                 @foreach($ekskul as $e)
@@ -134,7 +138,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="alamat" class="form-label">Alamat</label>
+                            <label for="alamat" class="form-label text-white">Alamat</label>
                             <textarea name="alamat" id="alamat" class="form-control" rows="3">{{ $siswa->alamat }}</textarea>
                             @error('alamat')
                             <div class="text-danger">{{ $message }}</div>

@@ -7,8 +7,8 @@
 <body class="bg-slate-200">
     <div class="container">
         {{-- card --}}
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white fw-bold">Data Guru</div>
+        <div class="card shadow bg-slate-600/50">
+            <div class="card-header bg-indigo-600/40 text-white fw-bold">Data Guru</div>
             <div class="card-body">
                 @if (session('status'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -31,27 +31,27 @@
                     </div>
                 </div>
                 <div class="my-2 mb-3">
-                    <hr class="mb-3 border-t-4">
+                    <hr class="mb-3 border-t-4 border-gray-500">
                     {{ $guru->links() }}
                 </div>
                     @foreach($guru as $s)
 
-                <div class="card mb-3 mt-3 border-0">
+                <div class="card mb-3 mt-3 border-0 bg-slate-500/40">
                     <div class="row g-0">
                         <div class="col-md-2">
-                            <img src="{{ asset('storage/' . $s->image) }}" alt="{{ $s->nama }}" class="img-fluid rounded-start" style="width: 370px; height: 370px; object-fit: cover;">
+                            <img src="{{ asset('storage/' . $s->image) }}" alt="{{ $s->nama }}" class="img-fluid rounded-start" style="width: 370px; height: 310px; object-fit: cover;">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title fw-bold">{{ $s->nama }}</h5>
+                                <h5 class="card-title fw-bold text-white text-xl">{{ $s->nama }}</h5>
                                 <hr class="col-md-2 mb-2">
-                                <p class="card-text"><strong>NUPTK:</strong> {{ $s->nuptk }}</p>
-                                <p class="card-text"><strong>Jenis Kelamin:</strong> {{ $s->jenis_kelamin }}</p>
-                                <p class="card-text"><strong>Agama:</strong> {{ $s->agama }}</p>
-                                <p class="card-text"><strong>No HP:</strong> {{ $s->phone }}</p>
-                                <p class="card-text"><strong>Email:</strong> {{ $s->email }}</p>
-                                <p class="card-text"><strong>Mengajar Kelas:</strong> {{ $s->kelas->kelas }}</p>
-                                <p class="card-text"><strong>Mengajar Jurusan:</strong> {{ $s->jurusan->jurusan }}</p>
+                                <p class="card-text"><strong class="text-slate-300">NUPTK : </strong><span class="text-white">{{ $s->nuptk }}</span> </p>
+                                <p class="card-text"><strong class="text-slate-300">Jenis Kelamin : </strong><span class="text-white">{{ $s->jenis_kelamin }}</span> </p>
+                                <p class="card-text"><strong class="text-slate-300">Agama : </strong><span class="text-white">{{ $s->agama }}</span> </p>
+                                <p class="card-text"><strong class="text-slate-300">No HP : </strong><span class="text-white">{{ $s->phone }}</span> </p>
+                                <p class="card-text"><strong class="text-slate-300">Email : </strong><span class="text-white">{{ $s->email }}</span> </p>
+                                <p class="card-text"><strong class="text-slate-300">Mengajar Kelas : </strong><span class="text-white">{{ $s->kelas->kelas }}</span> </p>
+                                <p class="card-text"><strong class="text-slate-300">Mengajar Jurusan : </strong><span class="text-white">{{ $s->jurusan->jurusan }}</span> </p>
                                 <div class="d-flex mt-4">
                                     <div style="display:inline;">
                                         <a href="{{ route('guru.edit', $s->id) }}" class="btn btn-warning btn-sm text-black">
@@ -70,7 +70,6 @@
                         </div>
                     </div>
                 </div>
-                <hr>
                 @endforeach
                 <div class="mt-3">
                     {{ $guru->links() }}
