@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="phone" class="form-label text-white">Phone</label>
+                            <label for="phone" class="form-label text-white">No HP</label>
                             <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone', $siswa->phone) }}" placeholder="Masukkan no hp anda">
                             @error('phone')
                             <div class="text-danger">{{ $message }}</div>

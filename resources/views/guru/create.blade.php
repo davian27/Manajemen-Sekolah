@@ -68,46 +68,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_mapel" class="form-label text-white">Mapel</label>
-                            <select name="id_mapel" id="id_mapel" class="form-select">
-                                <option value="">Pilih Mapel</option>
-                                @foreach($mapel as $m)
-                                    <option value="{{ $m->id_mapel }}" {{ old('id_mapel') == $m->id_mapel ? 'selected' : '' }}>{{ $m->mapel }}</option>
-                                @endforeach
-                            </select>
-                            @error('id_mapel')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="id_kelas" class="form-label text-white">Kelas</label>
-                            <select name="id_kelas" id="id_kelas" class="form-select">
-                                <option value="">Pilih Kelas</option>
-                                @foreach($kelas as $k)
-                                    <option value="{{ $k->id_kelas }}" {{ old('id_kelas') == $k->id_kelas ? 'selected' : '' }}>{{ $k->kelas }}</option>
-                                @endforeach
-                            </select>
-                            @error('id_kelas')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="id_jurusan" class="form-label text-white">Jurusan</label>
-                            <select name="id_jurusan" id="id_jurusan" class="form-select">
-                                <option value="">Pilih Jurusan</option>
-                                @foreach($jurusan as $j)
-                                    <option value="{{ $j->id_jurusan }}" {{ old('id_jurusan') == $j->id_jurusan ? 'selected' : '' }}>{{ $j->jurusan }}</option>
-                                @endforeach
-                            </select>
-                            @error('id_jurusan')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="phone" class="form-label text-white">Phone</label>
+                            <label for="phone" class="form-label text-white">No HP</label>
                             <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}" placeholder="Masukkan nomor telepon">
                             @error('phone')
                                 <div class="text-danger">{{ $message }}</div>
@@ -122,6 +83,44 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label for="id_mapel" class="form-label text-white">Mengajar Mapel</label>
+                            <select name="id_mapel" id="id_mapel" class="form-select">
+                                <option value="">Pilih Mapel</option>
+                                @foreach($mapel as $m)
+                                    <option value="{{ $m->id_mapel }}" {{ old('id_mapel') == $m->id_mapel ? 'selected' : '' }}>{{ $m->mapel }}</option>
+                                @endforeach
+                            </select>
+                            @error('id_mapel')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_kelas" class="form-label text-white">Mengajar Kelas</label>
+                            <select name="id_kelas" id="id_kelas" class="form-select">
+                                <option value="">Pilih Kelas</option>
+                                @foreach($kelas as $k)
+                                    <option value="{{ $k->id_kelas }}" {{ old('id_kelas') == $k->id_kelas ? 'selected' : '' }}>{{ $k->kelas }}</option>
+                                @endforeach
+                            </select>
+                            @error('id_kelas')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_jurusan" class="form-label text-white">Mengajar Jurusan</label>
+                            <select name="id_jurusan" id="id_jurusan" class="form-select">
+                                <option value="">Pilih Jurusan</option>
+                                @foreach($jurusan as $j)
+                                    <option value="{{ $j->id_jurusan }}" {{ old('id_jurusan') == $j->id_jurusan ? 'selected' : '' }}>{{ $j->jurusan }}</option>
+                                @endforeach
+                            </select>
+                            @error('id_jurusan')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <a href="{{ route('guru.index') }}" class="btn btn-danger">Kembali</a>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>

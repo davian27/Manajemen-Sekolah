@@ -78,7 +78,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="id_mapel" class="form-label text-white">Mapel</label>
+                            <label for="id_mapel" class="form-label text-white">Mengajar Mapel</label>
                             <select name="id_mapel" id="id_mapel" class="form-control">
                                 <option value="">Pilih Mapel</option>
                                 @foreach($mapel as $m)
@@ -90,7 +90,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="id_kelas" class="form-label text-white">Kelas</label>
+                            <label for="id_kelas" class="form-label text-white">Mengajar Kelas</label>
                             <select name="id_kelas" id="id_kelas" class="form-control">
                                 <option value="">Pilih Kelas</option>
                                 @foreach($kelas as $k)
@@ -102,7 +102,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="id_jurusan" class="form-label text-white">Jurusan</label>
+                            <label for="id_jurusan" class="form-label text-white">Mengajar Jurusan</label>
                             <select name="id_jurusan" id="id_jurusan" class="form-control">
                                 <option value="">Pilih Jurusan</option>
                                 @foreach($jurusan as $j)
