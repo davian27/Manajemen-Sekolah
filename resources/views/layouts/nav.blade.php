@@ -34,13 +34,13 @@
                 </div>
                 <nav class="hidden md:flex space-x-4 ml-10 text-white">
                     <a href="{{ route('dashboard.index') }}" class="navbar-text {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">Beranda</a>
-                    <a href="{{ route('siswa.index') }}" class="navbar-text {{ request()->routeIs('siswa.index') ? 'active' : '' }}">Data Siswa</a>
+                    <a href="{{ route('siswa.index') }}" class="navbar-text {{ request()->routeIs('siswa.index') || request()->routeIs('siswa.create') || request()->routeIs('siswa.edit') ? 'active' : '' }}">Data Siswa</a>
                     <a href="{{ route('guru.index') }}" class="navbar-text {{ request()->routeIs('guru.index') ? 'active' : '' }}">Data Guru</a>
-                    <a href="{{ route('kelas.index') }}" class="navbar-text {{ request()->routeIs('kelas.index') ? 'active' : '' }}">Data Kelas</a>
-                    <a href="{{ route('jurusan.index') }}" class="navbar-text {{ request()->routeIs('jurusan.index') ? 'active' : '' }}">Data Jurusan</a>
-                    <a href="{{ route('organisasi.index') }}" class="navbar-text {{ request()->routeIs('organisasi.index') ? 'active' : '' }}">Data Organisasi</a>
-                    <a href="{{ route('ekskul.index') }}" class="navbar-text {{ request()->routeIs('ekskul.index') ? 'active' : '' }}">Data Ekstrakurikuler</a>
-                    <a href="{{ route('mapel.index') }}" class="navbar-text {{ request()->routeIs('mapel.index') ? 'active' : '' }}">Data Mapel</a>
+                    <a href="{{ route('kelas.index') }}" class="navbar-text {{ request()->routeIs('kelas.index') || request()->routeIs('kelas.create') || request()->routeIs('kelas.edit') ? 'active' : '' }}">Data Kelas</a>
+                    <a href="{{ route('jurusan.index') }}" class="navbar-text {{ request()->routeIs('jurusan.index') || request()->routeIs('jurusan.create') || request()->routeIs('jurusan.edit') ? 'active' : '' }}">Data Jurusan</a>
+                    <a href="{{ route('organisasi.index') }}" class="navbar-text {{ request()->routeIs('organisasi.index') || request()->routeIs('organisasi.create') || request()->routeIs('organisasi.edit') ? 'active' : '' }}">Data Organisasi</a>
+                    <a href="{{ route('ekskul.index') }}" class="navbar-text {{ request()->routeIs('ekskul.index') || request()->routeIs('ekskul.create') || request()->routeIs('ekskul.edit') ? 'active' : '' }}">Data Ekstrakurikuler</a>
+                    <a href="{{ route('mapel.index') }}" class="navbar-text {{ request()->routeIs('mapel.index') || request()->routeIs('mapel.create') || request()->routeIs('mapel.edit') ? 'active' : '' }}">Data Mapel</a>
                 </nav>
             </div>
             <div class="relative">
