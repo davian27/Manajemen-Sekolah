@@ -92,7 +92,6 @@ class SiswaController extends Controller
         );
 
         $data = $request->all();
-        $data = $request->all();
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');
