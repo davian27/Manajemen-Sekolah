@@ -14,11 +14,10 @@
     <style>
         .active {
             font-weight: bold;
-            color: #2563eb; /* Tailwind white */
+            color: #818CF8;
         }
-        .active-orange {
-            font-weight: bold;
-            color: #f97316; /* Tailwind Orange-500 */
+        .navbar-text:hover {
+            color: #818CF8; 
         }
     </style>
 </head>
@@ -33,19 +32,19 @@
                         Manajemen<span class="mr-2"></span><span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">Sekolah</span>
                       </a>
                 </div>
-                <nav class="hidden md:flex space-x-4 ml-10">
-                    <a href="{{ route('dashboard.index') }}" class="text-white-700 hover:text-white {{ request()->routeIs('dashboard.index') ? 'active-orange' : '' }}">Beranda</a>
-                    <a href="{{ route('siswa.index') }}" class="text-white-700 hover:text-white {{ request()->routeIs('siswa.index') ? 'active-orange' : '' }}">Data Siswa</a>
-                    <a href="{{ route('guru.index') }}" class="text-white-700 hover:text-white {{ request()->routeIs('guru.index') ? 'active-orange' : '' }}">Data Guru</a>
-                    <a href="{{ route('kelas.index') }}" class="text-white-700 hover:text-white {{ request()->routeIs('kelas.index') ? 'active-orange' : '' }}">Data Kelas</a>
-                    <a href="{{ route('jurusan.index') }}" class="text-white-700 hover:text-white {{ request()->routeIs('jurusan.index') ? 'active-orange' : '' }}">Data Jurusan</a>
-                    <a href="{{ route('organisasi.index') }}" class="text-white-700 hover:text-white {{ request()->routeIs('organisasi.index') ? 'active-orange' : '' }}">Data Organisasi</a>
-                    <a href="{{ route('ekskul.index') }}" class="text-white-700 hover:text-white {{ request()->routeIs('ekskul.index') ? 'active-orange' : '' }}">Data Ekstrakurikuler</a>
-                    <a href="{{ route('mapel.index') }}" class="text-white-700 hover:text-white {{ request()->routeIs('mapel.index') ? 'active-orange' : '' }}">Data Mapel</a>
+                <nav class="hidden md:flex space-x-4 ml-10 text-white">
+                    <a href="{{ route('dashboard.index') }}" class="navbar-text {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">Beranda</a>
+                    <a href="{{ route('siswa.index') }}" class="navbar-text {{ request()->routeIs('siswa.index') ? 'active' : '' }}">Data Siswa</a>
+                    <a href="{{ route('guru.index') }}" class="navbar-text {{ request()->routeIs('guru.index') ? 'active' : '' }}">Data Guru</a>
+                    <a href="{{ route('kelas.index') }}" class="navbar-text {{ request()->routeIs('kelas.index') ? 'active' : '' }}">Data Kelas</a>
+                    <a href="{{ route('jurusan.index') }}" class="navbar-text {{ request()->routeIs('jurusan.index') ? 'active' : '' }}">Data Jurusan</a>
+                    <a href="{{ route('organisasi.index') }}" class="navbar-text {{ request()->routeIs('organisasi.index') ? 'active' : '' }}">Data Organisasi</a>
+                    <a href="{{ route('ekskul.index') }}" class="navbar-text {{ request()->routeIs('ekskul.index') ? 'active' : '' }}">Data Ekstrakurikuler</a>
+                    <a href="{{ route('mapel.index') }}" class="navbar-text {{ request()->routeIs('mapel.index') ? 'active' : '' }}">Data Mapel</a>
                 </nav>
             </div>
             <div class="relative">
-                <button id="user-menu-button" class="flex items-center text-sm font-medium text-white-700 hover:text-white focus:outline-none" onclick="toggleDropdown()">
+                <button id="user-menu-button" class="flex items-center text-sm font-medium navbar-text hover:text-white focus:outline-none" onclick="toggleDropdown()">
                     {{ Auth::user()->name }}
                     <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -54,7 +53,7 @@
                 <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="block w-full px-4 py-2 text-sm text-white-700 hover:bg-white-100" role="menuitem">
+                        <button type="submit" class="block w-full px-4 py-2 text-sm navbar-text hover:bg-white-100" role="menuitem">
                             Log Out
                         </button>
                     </form>
