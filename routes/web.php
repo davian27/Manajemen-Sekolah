@@ -20,8 +20,9 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 // Protected Routes
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
+    Route::resource('dashboard', DashboardController::class);
     Route::resource('guru', GuruController::class);
     Route::resource('siswa', SiswaController::class);
     Route::resource('kelas', KelasController::class);
