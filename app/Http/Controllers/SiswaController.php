@@ -14,21 +14,29 @@ class SiswaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Siswa::with(['kelas', 'jurusan', 'organisasi', 'ekskul'])
-            ->where('nama', 'LIKE', "%{$request->key}%")
-            ->orWhereRaw('nis LIKE ?', ['%' . $request->key . '%']);
-
-        $siswa = Siswa::orderBy('created_at', 'desc')->paginate(3);
-
+        $query = Siswa::query();
+        $key = $request->get('key');
+    
+        if ($request->has('key')) {
+            $key = $request->get('key');
+            $query->where(function ($q) use ($key) {
+                $q->where('nama', 'like', "%{$key}%");
+            });
+        }
+    
+    
+        $siswa = $query->orderBy('created_at', 'desc')->paginate(2)->withQueryString();
+    
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
         $organisasi = Organisasi::all();
         $ekskul = Ekskul::all();
-
+    
         $message = $siswa->isEmpty() ? 'Data tidak ditemukan' : '';
-
-        return view('siswa.index', compact('siswa', 'kelas', 'jurusan', 'organisasi', 'ekskul', 'message'));
+    
+        return view('siswa.index', compact('siswa', 'kelas', 'jurusan', 'organisasi', 'ekskul', 'message', 'key'));
     }
+    
 
 
     public function create()

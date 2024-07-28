@@ -23,11 +23,11 @@
                         <i class="fa-solid fa-refresh"></i>&nbsp;Refresh
                     </a>
                     <div class="d-flex justify-content-end ml-96">
-                        <form action="{{ route('siswa.index') }}" method="get" class="d-flex">
+                        <<form action="{{ route('siswa.index') }}" method="get" class="d-flex">
                             @csrf
-                            <input class="form-control col-md-8 h-10 ml-36" type="text" name="key" placeholder="Cari Siswa">
+                            <input class="form-control col-md-8 h-10 ml-36" type="text" name="key" value="{{ old('key') }}" placeholder="Cari Siswa">
                             <button class="btn btn-primary btn-sm ml-2 col-md-5 h-10" type="submit">Cari</button>
-                        </form>
+                            </form>
                     </div>
                 </div>
                 <div class="my-2 mb-3 ">
