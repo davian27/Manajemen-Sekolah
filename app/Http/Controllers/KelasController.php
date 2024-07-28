@@ -7,12 +7,16 @@ use App\Models\Kelas;
 
 class KelasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kelas = Kelas::all();
-        return view('kelas.index', compact('kelas'));
-    }
+        $search = $request->input('key');
+        $kelas = Kelas::search($search)->get();
 
+        $noDataFound = $kelas->isEmpty();
+
+        return view('kelas.index', compact('kelas', 'noDataFound'));
+    }
+    
     public function create()
     {
         return view('kelas.create');

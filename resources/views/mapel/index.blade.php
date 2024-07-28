@@ -21,7 +21,27 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('mapel.create') }}" class="btn btn-success m-3">Tambah mapel</a>
+                    <div class="d-flex">
+                        <a href="{{ route('mapel.create') }}" class="btn btn-success m-3">Tambah Mapel</a>
+                        <a href="{{ route('mapel.index') }}" class="btn btn-primary m-3">
+                            <i class="fa-solid fa-refresh"></i>&nbsp;Refresh
+                        </a>
+                        <div class="d-flex justify-content-end ml-60">
+                            <form action="{{ route('mapel.index') }}" method="get" class="d-flex">
+                                @csrf
+                                <input class="form-control col-md-8 h-10" type="text" name="key" placeholder="Cari mapel" value="{{ old('key', request()->input('key')) }}">
+                                <button class="btn btn-primary btn-sm ml-2 col-md-5 h-10" type="submit">Cari</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    @if($noDataFound)
+                        <div class="alert alert-warning mt-3">
+                            Mapel yang Anda cari tidak ditemukan.
+                        </div>
+                    @else
+
+
                     <table class="table table-bordered table-dark table-striped table-hover">
                         <thead>
                             <tr>
@@ -52,6 +72,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @endif
                 </div>
             </div>
         </div>

@@ -19,4 +19,13 @@ class Ekskul extends Model
     {
         return $this->hasMany(Siswa::class, 'id_ekskul', 'id_ekskul');
     }
+
+    public function scopeSearch($query, $search)
+    {
+        if ($search) {
+            return $query->where('jurusan', 'LIKE', '%' . $search . '%');
+        }
+
+        return $query;
+    }
 }

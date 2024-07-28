@@ -19,4 +19,13 @@ class Organisasi extends Model
     {
         return $this->hasMany(Siswa::class, 'id_organisasi', 'id_organisasi');
     }
+
+    public function scopeSearch($query, $search)
+    {
+        if ($search) {
+            return $query->where('organisasi', 'LIKE', '%' . $search . '%');
+        }
+
+        return $query;
+    }
 }

@@ -16,7 +16,20 @@ class Kelas extends Model
     public function siswa()
     {
         return $this->hasMany(Siswa::class, 'id_kelas', 'id_kelas');
+    }
+
+    public function guru()
+    {
         return $this->hasMany(Guru::class, 'id_kelas', 'id_kelas');
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        if ($search) {
+            return $query->where('kelas', 'LIKE', '%' . $search . '%');
+        }
+
+        return $query;
     }
 }
 

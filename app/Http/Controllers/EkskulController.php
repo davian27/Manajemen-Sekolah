@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 
 class EkskulController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $ekskul = Ekskul::all();
-        return view('ekskul.index', compact('ekskul'));
+        $search = $request->input('key');
+        $ekskul = Ekskul::when($search, function($query, $search) {
+            return $query->where('ekskul', 'LIKE', '%' . $search . '%');
+        })->get();
+
+        $noDataFound = $ekskul->isEmpty();
+
+        return view('ekskul.index', compact('ekskul', 'noDataFound'));
     }
 
     public function create()

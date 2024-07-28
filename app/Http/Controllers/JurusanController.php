@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jurusan;
 
+
 class JurusanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $jurusan = Jurusan::all();
-        return view('jurusan.index', compact('jurusan'));
+        $search = $request->input('key');
+        $jurusan = Jurusan::when($search, function($query, $search) {
+            return $query->where('jurusan', 'LIKE', '%' . $search . '%');
+        })->get();
+
+        $noDataFound = $jurusan->isEmpty();
+
+        return view('jurusan.index', compact('jurusan', 'noDataFound'));
     }
 
     public function create()
