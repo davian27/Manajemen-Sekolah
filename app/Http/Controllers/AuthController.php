@@ -20,7 +20,7 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
-        ],[
+        ], [
             'email.required' => 'Email harus diisi!',
             'email.email' => 'Email tidak valid',
             'password.required' => 'Password harus diisi!',
@@ -33,9 +33,18 @@ class AuthController extends Controller
             return redirect()->intended('dashboard');
         }
 
-        throw ValidationException::withMessages([
-            'email' => 'Email belum terdaftar',
-        ]);
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            // User found, password is incorrect
+            throw ValidationException::withMessages([
+                'password' => 'Password salah',
+            ]);
+        } else {
+            // User not found
+            throw ValidationException::withMessages([
+                'email' => 'Email belum terdaftar',
+            ]);
+        }
     }
 
     public function showRegisterForm()
@@ -77,5 +86,4 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
-
 }

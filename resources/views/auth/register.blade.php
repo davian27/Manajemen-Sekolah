@@ -64,7 +64,7 @@
             <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
               Nama
             </label>
-            <input class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out" id="name" name="name" type="text" placeholder="Masukkan nama" />
+            <input class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out" id="name" name="name" type="text" value="{{ old('name') }}" placeholder="Masukkan nama" />
             @error('name')
             <div class="text-danger">{{ $message }}</div>
             @enderror
@@ -72,7 +72,7 @@
             <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
               Email
             </label>
-            <input class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out" id="email" name="email" type="text" placeholder="Masukkan email" />
+            <input class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out" id="email" name="email" type="text" value="{{ old('email') }}" placeholder="Masukkan email" />
             @error('email')
             <div class="text-danger">{{ $message }}</div>
             @enderror
