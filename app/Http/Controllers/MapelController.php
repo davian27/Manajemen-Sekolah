@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 
 class MapelController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $mapel = Mapel::all();
-        return view('mapel.index', compact('mapel'));
+        $search = $request->input('key');
+        $mapel = Mapel::when($search, function($query, $search) {
+            return $query->where('mapel', 'LIKE', '%' . $search . '%');
+        })->get();
+
+        $noDataFound = $mapel->isEmpty();
+
+        return view('mapel.index', compact('mapel', 'noDataFound'));
     }
 
     public function create()

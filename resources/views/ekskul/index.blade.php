@@ -22,7 +22,26 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('ekskul.create') }}" class="btn btn-success m-3">Tambah ekskul</a>
+                    <div class="d-flex">
+                        <a href="{{ route('ekskul.create') }}" class="btn btn-success m-3">Tambah Ekskul</a>
+                        <a href="{{ route('ekskul.index') }}" class="btn btn-primary m-3">
+                            <i class="fa-solid fa-refresh"></i>&nbsp;Refresh
+                        </a>
+                        <div class="d-flex justify-content-end ml-60">
+                            <form action="{{ route('ekskul.index') }}" method="get" class="d-flex">
+                                @csrf
+                                <input class="form-control col-md-8 h-10" type="text" name="key" placeholder="Cari ekskul" value="{{ old('key', request()->input('key')) }}">
+                                <button class="btn btn-primary btn-sm ml-2 col-md-5 h-10" type="submit">Cari</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    @if($noDataFound)
+                        <div class="alert alert-warning mt-3">
+                            Ekskul yang Anda cari tidak ditemukan.
+                        </div>
+                    @else
+
                     <table class="table table-bordered table-dark table-striped table-hover">
                         <thead>
                             <tr>
@@ -53,6 +72,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @endif
                 </div>
             </div>
         </div>

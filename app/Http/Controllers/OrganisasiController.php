@@ -7,10 +7,16 @@ use App\Models\Organisasi;
 
 class OrganisasiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $organisasi = Organisasi::all();
-        return view('organisasi.index', compact('organisasi'));
+        $search = $request->input('key');
+        $organisasi = Organisasi::when($search, function($query, $search) {
+            return $query->where('organisasi', 'LIKE', '%' . $search . '%');
+        })->get();
+
+        $noDataFound = $organisasi->isEmpty();
+
+        return view('organisasi.index', compact('organisasi', 'noDataFound'));
     }
 
     public function create()
