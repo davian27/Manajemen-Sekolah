@@ -18,7 +18,7 @@ class SiswaController extends Controller
             ->where('nama', 'LIKE', "%{$request->key}%")
             ->orWhereRaw('nis LIKE ?', ['%' . $request->key . '%']);
 
-        $siswa = $query->simplePaginate(3);
+        $siswa = Siswa::orderBy('created_at', 'desc')->paginate(3);
 
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
