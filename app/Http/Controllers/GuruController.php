@@ -22,6 +22,16 @@ class GuruController extends Controller
         return view('guru.index', compact('guru', 'mapel', 'kelas', 'jurusan'));
     }
 
+    // public function mapel(){
+    //    $mapel = Mapel::with([
+    //     'mapel' => function ($query) {
+    //         $query->withTrashed();
+    //     }
+    //    ])->get();
+
+    //    return view('guru.index', compact('index'));
+    // }
+
     public function create()
     {
         $mapel = Mapel::all();

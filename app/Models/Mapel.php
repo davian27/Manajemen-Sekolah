@@ -3,15 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Mapel extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'tb_mapel';
     protected $primaryKey = 'id_mapel';
 
     public $timestamps = true;
 
     protected $fillable = ['mapel'];
+
+    protected $dates = ['deleted_at'];
 
     public function siswa()
     {
@@ -27,4 +32,3 @@ class Mapel extends Model
         return $query;
     }
 }
-

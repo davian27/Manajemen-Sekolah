@@ -50,7 +50,7 @@
                                 <p class="card-text"><strong class="text-slate-300">Agama : </strong><span class="text-white">{{ $s->agama }}</span> </p>
                                 <p class="card-text"><strong class="text-slate-300">No HP : </strong><span class="text-white">{{ $s->phone }}</span> </p>
                                 <p class="card-text"><strong class="text-slate-300">Email : </strong><span class="text-white">{{ $s->email }}</span> </p>
-                                <p class="card-text"><strong class="text-slate-300">Mengajar Mapel : </strong><span class="text-white">{{ $s->mapel->mapel }}</span> </p>
+                                <p class="card-text"><strong class="text-slate-300">Mengajar Mapel : </strong><span class="text-white">{{ $s->mapel->mapel ?? 'Mapel dihapus' }}</span></p>
                                 <p class="card-text"><strong class="text-slate-300">Mengajar Kelas : </strong><span class="text-white">{{ $s->kelas->kelas }}</span> </p>
                                 <p class="card-text"><strong class="text-slate-300">Mengajar Jurusan : </strong><span class="text-white">{{ $s->jurusan->jurusan }}</span> </p>
                                 <div class="d-flex mt-4">

@@ -27,7 +27,7 @@ class MapelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-           'mapel' => ['required', 'string', 'unique:tb_mapel,mapel', 'max:30', 'regex:/^[a-zA-Z\s]+$/'],
+            'mapel' => ['required', 'string', 'unique:tb_mapel,mapel', 'max:30', 'regex:/^[a-zA-Z\s]+$/'],
         ],[
             'mapel.required' => 'mapel wajib diisi.',
             'mapel.unique' => 'mapel sudah terdaftar.',
@@ -48,35 +48,56 @@ class MapelController extends Controller
 
     public function update(Request $request, $id)
     {
+        $mapel = Mapel::findOrFail($id);
 
-    $mapel = Mapel::findOrFail($id);
+        $request->validate([
+            'mapel' => ['required', 'string', 'unique:tb_mapel,mapel,' . $mapel->id_mapel . ',id_mapel', 'max:30', 'regex:/^[a-zA-Z\s]+$/'],
+        ],[
+            'mapel.required' => 'mapel wajib diisi.',
+            'mapel.unique' => 'mapel sudah terdaftar.',
+            'mapel.max' => 'mapel maksimal 30 karakter.',
+            'mapel.regex' => 'mapel hanya boleh berisi huruf.',
+        ]);
 
-    $request->validate([
-        'mapel' => ['required', 'string', 'unique:tb_mapel,mapel,' . $mapel->id_mapel . ',id_mapel', 'max:30', 'regex:/^[a-zA-Z\s]+$/'],
-    ],[
-        'mapel.required' => 'mapel wajib diisi.',
-        'mapel.unique' => 'mapel sudah terdaftar.',
-        'mapel.max' => 'mapel maksimal 30 karakter.',
-        'mapel.regex' => 'mapel hanya boleh berisi huruf.',
-    ]);
+        $mapel->update([
+            'mapel' => $request->mapel,
+        ]);
 
-    $mapel->update([
-        'mapel' => $request->mapel,
-    ]);
-
-    return redirect()->route('mapel.index')->with('status', 'Data mapel berhasil diubah.');
+        return redirect()->route('mapel.index')->with('status', 'Data mapel berhasil diubah.');
     }
 
     public function destroy($id)
     {
         $mapel = Mapel::findOrFail($id);
 
-        if ($mapel->siswa()->exists()) {
-            return redirect()->route('mapel.index')->with('error', 'mapel tidak dapat dihapus karena masih terhubung dengan data guru.');
-        }
+        // if ($mapel->siswa()->exists()) {
+        //     return redirect()->route('mapel.index')->with('error', 'Mapel tidak dapat dihapus karena masih terhubung dengan data guru.');
+        // }
 
         $mapel->delete();
 
         return redirect()->route('mapel.index')->with('status', 'Data mapel berhasil dihapus.');
+    }
+
+    public function trashed()
+    {
+        $mapel = Mapel::onlyTrashed()->get();
+        return view('mapel.trashed', compact('mapel'));
+    }
+
+    public function restore($id)
+    {
+        $mapel = Mapel::withTrashed()->findOrFail($id);
+        $mapel->restore();
+
+        return redirect()->route('mapel.trashed')->with('status', 'Data mapel berhasil dipulihkan.');
+    }
+
+    public function forceDelete($id)
+    {
+        $mapel = Mapel::withTrashed()->findOrFail($id);
+        $mapel->forceDelete();
+
+        return redirect()->route('mapel.trashed')->with('status', 'Data mapel berhasil dihapus permanen.');
     }
 }
