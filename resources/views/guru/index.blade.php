@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <body class="bg-slate-200">
     <div class="container">
         {{-- card --}}
