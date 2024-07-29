@@ -13,9 +13,16 @@ class GuruController extends Controller
 {
     public function index(Request $request)
     {
-        $guru = Guru::with(['mapel', 'kelas', 'jurusan'])->where('nama', "LIKE", "%$request->key%")
-            ->orWhereRaw('nuptk LIKE?', ['%' . $request->key . '%'])
-            ->simplePaginate(3);
+        $query = Guru::query();
+        $key = $request->get('key');
+    
+        if ($request->has('key')) {
+            $key = $request->get('key');
+            $query->where(function ($q) use ($key) {
+                $q->where('nama', 'like', "%{$key}%");
+            });
+        }
+        $guru = $query->orderBy('created_at', 'desc')->paginate(2)->withQueryString();
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
