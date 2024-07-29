@@ -30,9 +30,9 @@
                             </form>
                     </div>
                 </div>
-                <div class="my-2 mb-3 ">
+                <div class="my-2 mb-3">
                     <hr class="mb-3 border-t-4 border-gray-500">
-                    {{ $siswa->links() }}
+                    {{ $siswa->links('pagination::bootstrap-4') }}
                 </div>
                 @if($message)
                 <p class="text-white text-lg">{{ $message }}</p>
@@ -78,7 +78,7 @@
                 </div>
                 @endforeach
                 <div class="mt-3">
-                    {{ $siswa->links() }}
+                    {{ $siswa->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>
