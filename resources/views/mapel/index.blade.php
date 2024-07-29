@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-7">
+        <div class="col-md-9">
             <div class="card shadow bg-slate-600/50">
                 <div class="card-header bg-indigo-600/40 text-white fw-bold">Data Mapel</div>
                 <div class="card-body">
@@ -23,6 +23,10 @@
 
                     <div class="d-flex">
                         <a href="{{ route('mapel.create') }}" class="btn btn-success m-3">Tambah Mapel</a>
+
+                        <a href="{{ route('mapel.trashed') }}" class="btn btn-secondary m-3">
+                            <i class="fa-solid fa-trash"></i>&nbsp;Lihat Data Terhapus
+                        </a>
                         <a href="{{ route('mapel.index') }}" class="btn btn-primary m-3">
                             <i class="fa-solid fa-refresh"></i>&nbsp;Refresh
                         </a>

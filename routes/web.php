@@ -29,5 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('jurusan', JurusanController::class);
     Route::resource('organisasi', OrganisasiController::class);
     Route::resource('ekskul', EkskulController::class);
-    Route::resource('mapel', MapelController::class);
+    Route::resource('mapel', MapelController::class)->except(['show']);
+
+    // Soft delete routes for mapel
+    Route::get('mapel/trashed', [MapelController::class, 'trashed'])->name('mapel.trashed');
+    Route::post('mapel/{id}/restore', [MapelController::class, 'restore'])->name('mapel.restore');
+    Route::delete('mapel/{id}/force-delete', [MapelController::class, 'forceDelete'])->name('mapel.forceDelete');
 });
