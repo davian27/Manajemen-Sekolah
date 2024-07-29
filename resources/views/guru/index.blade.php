@@ -32,7 +32,7 @@
                 </div>
                 <div class="my-2 mb-3">
                     <hr class="mb-3 border-t-4 border-gray-500">
-                    {{ $guru->links() }}
+                    {{ $guru->links('pagination::bootstrap-4') }}
                 </div>
                     @foreach($guru as $s)
 
@@ -73,7 +73,7 @@
                 </div>
                 @endforeach
                 <div class="mt-3">
-                    {{ $guru->links() }}
+                    {{ $guru->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>
