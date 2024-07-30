@@ -26,7 +26,7 @@
                     <div class="d-flex justify-content-end ml-96">
                         <form action="{{ route('guru.index') }}" method="get" class="d-flex">
                             @csrf
-                            <input class="form-control col-md-8 h-10 ml-36" type="text" name="key" placeholder="Cari guru">
+                            <input class="form-control col-md-8 h-10 ml-36" type="text" name="key" value="{{ old('key', request()->input('key')) }}" placeholder="Cari guru">
                             <button class="btn btn-primary btn-sm ml-2 col-md-5 h-10" type="submit">Cari</button>
                         </form>
                     </div>
