@@ -25,7 +25,7 @@
                         <a href="{{ route('mapel.create') }}" class="btn btn-success m-3">Tambah Mapel</a>
 
                         <a href="{{ route('mapel.trashed') }}" class="btn btn-secondary m-3">
-                            <i class="fa-solid fa-trash"></i>&nbsp;Lihat Data Terhapus
+                            <i class="fa-solid fa-trash"></i>&nbsp;Lihat Mapel Terhapus
                         </a>
                         <a href="{{ route('mapel.index') }}" class="btn btn-primary m-3">
                             <i class="fa-solid fa-refresh"></i>&nbsp;Refresh
