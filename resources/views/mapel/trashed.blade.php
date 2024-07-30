@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Trashed Mapel')
+@section('title', 'Mapel Terhapus')
 
 @section('content')
 <body class="bg-slate-200">
     <div class="container">
         <div class="card shadow bg-slate-600/50">
-            <div class="card-header bg-indigo-600/40 text-white fw-bold">Trashed Mapel</div>
+            <div class="card-header bg-indigo-600/40 text-white fw-bold">Mapel Terhapus</div>
             <div class="card-body">
                 @if (session('status'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
