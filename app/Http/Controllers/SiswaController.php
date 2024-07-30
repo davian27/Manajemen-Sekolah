@@ -16,27 +16,27 @@ class SiswaController extends Controller
     {
         $query = Siswa::query();
         $key = $request->get('key');
-    
+
         if ($request->has('key')) {
             $key = $request->get('key');
             $query->where(function ($q) use ($key) {
                 $q->where('nama', 'like', "%{$key}%");
             });
         }
-    
-    
-        $siswa = $query->orderBy('created_at', 'desc')->paginate(2)->withQueryString();
-    
+
+
+        $siswa = $query->orderBy('created_at', 'desc')->paginate(3)->withQueryString();
+
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
         $organisasi = Organisasi::all();
         $ekskul = Ekskul::all();
-    
+
         $message = $siswa->isEmpty() ? 'Data tidak ditemukan' : '';
-    
+
         return view('siswa.index', compact('siswa', 'kelas', 'jurusan', 'organisasi', 'ekskul', 'message', 'key'));
     }
-    
+
 
 
     public function create()

@@ -15,14 +15,14 @@ class GuruController extends Controller
     {
         $query = Guru::query();
         $key = $request->get('key');
-    
+
         if ($request->has('key')) {
             $key = $request->get('key');
             $query->where(function ($q) use ($key) {
                 $q->where('nama', 'like', "%{$key}%");
             });
         }
-        $guru = $query->orderBy('created_at', 'desc')->paginate(2)->withQueryString();
+        $guru = $query->orderBy('created_at', 'desc')->paginate(3)->withQueryString();
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();
