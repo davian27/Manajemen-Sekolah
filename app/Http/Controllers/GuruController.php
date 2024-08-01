@@ -87,6 +87,7 @@ class GuruController extends Controller
             $imagePath = $request->file('image')->store('images', 'public');
             $data['image'] = $imagePath;
         }
+        
 
         Guru::create($data);
 
